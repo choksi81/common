@@ -1,5 +1,5 @@
-common/*
-common/utf/*
-repy_v2/*
+./*
+DEPENDENCIES/repy_v2/*
+DEPENDENCIES/common/*
 # Tests
 test ../tests/*
