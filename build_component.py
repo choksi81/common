@@ -292,6 +292,7 @@ def main():
   # Create directories for each Repy version under the target
   repy_dir = {"v1" : "repyV1",
       "v2" : "repyV2" }
+      
 
   for dir_name in repy_dir.values():
     if not os.path.exists(dir_name):
@@ -331,6 +332,17 @@ def main():
 
     copy_to_target(source_spec, target_dir)
   
+  
+  config_file_1 = open("scripts/config_build.txt")
+  
+  for line in config_file_1.readlines():
+    if line.startswith("#") or line.strip() == '' or line.startswith("test"):
+      continue
+    else:
+      if line.split("/", 1)[1].strip() == "repy_v1/*":
+        copy_to_target(line.strip(), os.path.realpath(os.path.join(target_dir, "repyV1")))
+      elif line.split("/", 1)[1].strip() == "repy_v2/*":
+        copy_to_target(line.strip(), os.path.realpath(os.path.join(target_dir, "repyV2")))
   
   # Set working directory to the target
   os.chdir(target_dir)
